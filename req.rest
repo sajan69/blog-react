@@ -1,0 +1,48 @@
+### Register a new user
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "Sajan Adhikari",
+    "email": "sajan@example.com",
+    "password": "password123"
+}
+
+### Login with registered user
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "sajan@example.com",
+    "password": "password123"
+}
+
+### Create a Post (Requires Authentication)
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjQ3NzQ3MCwiZXhwIjoxNzE2NDgxMDcwfQ.fZEdswCO6fpMTeOjM7i97M4LrEBGnqigZ3WBgxS1yN0
+
+{
+  "title": "My First Post on this new Post Model API",
+  "content": "This is the content of my first post."
+}
+
+### Get All Posts
+GET http://localhost:5000/api/posts
+
+### Get Single Post by ID
+GET http://localhost:5000/api/posts/:postId
+
+### Update Post by ID (Requires Authentication)
+PUT http://localhost:5000/api/posts/:postId
+Content-Type: application/json
+Authorization: Bearer <token>
+
+{
+  "title": "Updated Title",
+  "content": "Updated content of the post."
+}
+
+### Delete Post by ID (Requires Authentication)
+DELETE http://localhost:5000/api/posts/:postId
+Authorization: Bearer <token>
