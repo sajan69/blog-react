@@ -1,4 +1,3 @@
-// models/Post.js
 const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
@@ -43,5 +42,16 @@ const PostSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+PostSchema.virtual('likesCount').get(function() {
+  return this.likes.length;
+});
+
+PostSchema.virtual('commentsCount').get(function() {
+  return this.comments.length;
+});
+
+PostSchema.set('toJSON', { virtuals: true });
+PostSchema.set('toObject', { virtuals: true });
 
 module.exports = mongoose.model('Post', PostSchema);

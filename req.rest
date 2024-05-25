@@ -20,29 +20,50 @@ Content-Type: application/json
 ### Create a Post (Requires Authentication)
 POST http://localhost:5000/api/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjQ3NzQ3MCwiZXhwIjoxNzE2NDgxMDcwfQ.fZEdswCO6fpMTeOjM7i97M4LrEBGnqigZ3WBgxS1yN0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYyMTU2OCwiZXhwIjoxNzE2NjI1MTY4fQ.OKMo-ZXwVLghQ-BmeBBdQZ4B9OkwHrtT1A6sj6hNz8g
 
 {
-  "title": "My First Post on this new Post Model API",
-  "content": "This is the content of my first post."
+  "title": "My second Post on this new Post Model API",
+  "content": "This is the content of my secomd post."
 }
 
 ### Get All Posts
 GET http://localhost:5000/api/posts
 
 ### Get Single Post by ID
-GET http://localhost:5000/api/posts/:postId
+GET http://localhost:5000/api/posts/66519121a09174380d92bf41
 
 ### Update Post by ID (Requires Authentication)
-PUT http://localhost:5000/api/posts/:postId
+PUT http://localhost:5000/api/posts/66519121a09174380d92bf41
 Content-Type: application/json
-Authorization: Bearer <token>
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYyMjE0MCwiZXhwIjoxNzE2NjI1NzQwfQ.CD4XBaZPXcfvlUqF-Zj2czc5CTJql_YDE0uLeufVy2M
 
 {
-  "title": "Updated Title",
+  "title": "Updated Title on this post model",
   "content": "Updated content of the post."
 }
 
 ### Delete Post by ID (Requires Authentication)
-DELETE http://localhost:5000/api/posts/:postId
-Authorization: Bearer <token>
+DELETE http://localhost:5000/api/posts/66519121a09174380d92bf41
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYyMjE0MCwiZXhwIjoxNzE2NjI1NzQwfQ.CD4XBaZPXcfvlUqF-Zj2czc5CTJql_YDE0uLeufVy2M
+
+### Like a Post
+PUT http://localhost:5000/api/posts/like/66519121a09174380d92bf41
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYyMTU2OCwiZXhwIjoxNzE2NjI1MTY4fQ.OKMo-ZXwVLghQ-BmeBBdQZ4B9OkwHrtT1A6sj6hNz8g
+
+### Unlike a Post
+PUT http://localhost:5000/api/posts/unlike/66519121a09174380d92bf41
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYyMTU2OCwiZXhwIjoxNzE2NjI1MTY4fQ.OKMo-ZXwVLghQ-BmeBBdQZ4B9OkwHrtT1A6sj6hNz8g
+
+### Comment on a Post
+POST http://localhost:5000/api/posts/comment/66519121a09174380d92bf41
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYyMTU2OCwiZXhwIjoxNzE2NjI1MTY4fQ.OKMo-ZXwVLghQ-BmeBBdQZ4B9OkwHrtT1A6sj6hNz8g
+
+{
+  "text": "ramro blog xa bro."
+}
+
+### Delete a Comment
+DELETE http://localhost:5000/api/posts/comment/:postId/:commentId
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYyMTU2OCwiZXhwIjoxNzE2NjI1MTY4fQ.OKMo-ZXwVLghQ-BmeBBdQZ4B9OkwHrtT1A6sj6hNz8g
