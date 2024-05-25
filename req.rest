@@ -66,3 +66,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiN
 ### Delete a Comment
 DELETE http://localhost:5000/api/posts/comment/:postId/:commentId
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MWM3ODc3MzE5OTIwMjkzMWMyMWIyIn0sImlhdCI6MTcxNjYzNTYzNywiZXhwIjoxNzE2NjM5MjM3fQ.VFjgYNPwWVUN9S3xZR7xVB6lTDO16sVAo0eAlelrcro
+
+### Get All Users
+GET http://localhost:5000/api/auth/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MWM3ODc3MzE5OTIwMjkzMWMyMWIyIn0sImlhdCI6MTcxNjYzNTYzNywiZXhwIjoxNzE2NjM5MjM3fQ.VFjgYNPwWVUN9S3xZR7xVB6lTDO16sVAo0eAlelrcro
+
+### Retrieve user profile
+GET http://localhost:5000/api/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYzOTI5NywiZXhwIjoxNzE2NjM5MzU3fQ.RcpKsWxuYyL2M9lJmbeS7qIr3ih__D0xcIr6FcJJUYc
+### Update user profile
+PUT http://localhost:5000/api/auth/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYzOTI5NywiZXhwIjoxNzE2NjM5MzU3fQ.RcpKsWxuYyL2M9lJmbeS7qIr3ih__D0xcIr6FcJJUYc
+
+  {
+    "name": "Sajan Adhikari",
+    "email": "sajan@example.com",
+    "password": "password@123"
+  }
+  

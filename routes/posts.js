@@ -13,7 +13,7 @@ const {
   deleteComment
 } = require('../controllers/postController');
 const { postValidation, commentValidation } = require('../validation/post');
-const auth = require('../middleware/auth');
+const auth = require('../middleware/Auth');
 
 // @route   POST api/posts
 // @desc    Create a post
