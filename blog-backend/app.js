@@ -7,6 +7,10 @@ const authRoutes = require('./routes/auth');
 require('dotenv').config();
 
 const app = express();
+// app.js or server.js (Backend entry point)
+const cors = require('cors');
+app.use(cors({ origin: 'http://localhost:3000' })); // Adjust the origin as necessary
+
 
 // Connect to MongoDB
 mongoose.connect('mongodb://localhost:27017/blog')
@@ -18,6 +22,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use('/api/posts', postRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/categories', require('./routes/categories'));
 
 // Start server
 const PORT = process.env.PORT || 5000;

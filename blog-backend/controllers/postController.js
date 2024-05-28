@@ -12,7 +12,8 @@ exports.createPost = async (req, res) => {
     const newPost = new Post({
       title: req.body.title,
       content: req.body.content,
-      user: req.user.id
+      user: req.user.id,
+      category: req.body.category
     });
 
     const post = await newPost.save();
@@ -26,7 +27,19 @@ exports.createPost = async (req, res) => {
 // Get all posts
 exports.getPosts = async (req, res) => {
   try {
-    const posts = await Post.find().sort({ date: -1 });
+    let posts = req.query.category ? await Post.find({category:req.query.category}).sort({ date: -1 })
+    .populate('user', 'name')
+    .populate('category', 'name'): await Post.find().sort({ date: -1 })
+    .populate('user', 'name')
+    .populate('category', 'name');
+
+    const search = req.query.search;
+    if (search) {
+      const searchRegex = new RegExp(search, 'i');
+      posts = posts.filter(post => searchRegex.test(post.title));
+    }
+    
+    
     res.json(posts);
   } catch (err) {
     console.error(err.message);
@@ -37,13 +50,19 @@ exports.getPosts = async (req, res) => {
 // Get post by ID
 exports.getPostById = async (req, res) => {
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id)
+    .populate('user', 'name')
+    .populate('category', 'name');
 
     if (!post) {
       return res.status(404).json({ msg: 'Post not found' });
     }
 
-    res.json(post);
+    const relatedPosts = await Post.find({
+      category: post.category,
+      _id: { $ne: post.id }
+    })
+    res.json({ post, relatedPosts });
   } catch (err) {
     console.error(err.message);
     if (err.kind === 'ObjectId') {
@@ -101,7 +120,13 @@ exports.deletePost = async (req, res) => {
       return res.status(401).json({ msg: 'User not authorized' });
     }
 
-    await post.remove();
+    post.replaceOne=await Post.findByIdAndDelete(req.params.id);
+
+    
+
+
+
+    
 
     res.json({ msg: 'Post removed' });
   } catch (err) {
@@ -171,7 +196,8 @@ exports.commentOnPost = async (req, res) => {
   }
 
   try {
-    const post = await Post.findById(req.params.id);
+    const post = await Post.findById(req.params.id)
+    .populate('user', 'name');
 
     if (!post) {
       return res.status(404).json({ msg: 'Post not found' });
@@ -180,9 +206,10 @@ exports.commentOnPost = async (req, res) => {
     const newComment = {
       text: req.body.text,
       user: req.user.id,
+      userName: req.user.name, // Add userName field with commenter's name
       date: Date.now()
     };
-
+    console.log(req.user);
     post.comments.unshift(newComment);
 
     await post.save();
@@ -222,6 +249,21 @@ exports.deleteComment = async (req, res) => {
     await post.save();
 
     res.json({ commentsCount: post.comments.length, comments: post.comments });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server error');
+  }
+};
+
+
+
+// Get posts by category name
+exports.getPostsByCategory = async (req, res) => {
+  try {
+    const posts = await Post.find({ category: req.params.category_id })
+    .populate('user', 'name')
+    .populate('category', 'name');
+    res.json(posts);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server error');

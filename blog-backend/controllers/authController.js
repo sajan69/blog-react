@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
+const Post = require('../models/Post');
 const { validationResult } = require('express-validator');
 
 // Register User
@@ -108,10 +109,11 @@ exports.getAllUsers = async (req, res) => {
 exports.getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select('-password');
+    const posts = await Post.find({ user: req.user.id }).sort({ date: -1 });
     if (!user) {
       return res.status(404).json({ msg: 'User not found' });
     }
-    res.json(user);
+    res.json({ user, posts });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');

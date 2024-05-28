@@ -374,4 +374,6 @@ Authorization: Bearer <your_jwt_token>
 
 ---
 
-This SRS document provides a comprehensive overview of the Simple Blog Site project, outlining its scope, requirements, and examples for API testing.
+This SRS document provides a comprehensive overview of the Simple Blog Site project created for learning basics of Node.Js, outlining its scope, requirements, and examples for API testing.
+
+## Created By Sajan Adhikari

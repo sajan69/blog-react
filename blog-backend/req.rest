@@ -1,0 +1,114 @@
+### Register a new user
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "name": "Sajan Adhikari",
+    "email": "sajasasssa2@example.com",
+    "password": "Psword@3"
+}
+
+### Login with registered user
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "sajasasssa2@example.com",
+    "password": "Psword@3"
+}
+
+### Create a Post (Requires Authentication)
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MzRkYWQxNGVlZjQ1NzQ4YmI0N2FkIn0sImlhdCI6MTcxNjczNzkzMSwiZXhwIjoxNzE2NzQxNTMxfQ.p6qrjriLMGg6t5aJNTiY8DoDbWnVVSOlR9dDdGbG22k
+
+{
+  "title": "My third Post on this new Post Model API",
+  "content": "This is the content of my third post."
+}
+
+### Get All Posts
+GET http://localhost:5000/api/posts?category=66535570493b434d5c9cc141
+
+### Get Single Post by ID
+GET http://localhost:5000/api/posts/665355cd493b434d5c9cc144
+### Update Post by ID (Requires Authentication)
+PUT http://localhost:5000/api/posts/665355cd493b434d5c9cc144
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY0ZjU5OWQwN2VmMWM3NTI2MjU3YjYwIn0sImlhdCI6MTcxNjYzNTgwNSwiZXhwIjoxNzE2NjM5NDA1fQ.-seKrsnrsUL5fOwlXO6BBaFOqV5hOeOa6LVP4DTRy40
+
+{
+  "title": "thik xa ni ta",
+  "content": "Updated content of the post."
+}
+
+### Delete Post by ID (Requires Authentication)
+DELETE http://localhost:5000/api/posts/66561a49995b5c7ff3cb011f
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1NjEzZDZiMmRiZjViODI3MzBmNWQ3In0sImlhdCI6MTcxNjkxNzIxOSwiZXhwIjoxNzE2OTIwODE5fQ.yUPuHC089pjkBWVpYs5KFvDRw0-Tx1pMFtXDfRv8XEc
+
+### Like a Post
+PUT http://localhost:5000/api/posts/like/6651c86673199202931c21d0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MWM3ODc3MzE5OTIwMjkzMWMyMWIyIn0sImlhdCI6MTcxNjYzNTYzNywiZXhwIjoxNzE2NjM5MjM3fQ.VFjgYNPwWVUN9S3xZR7xVB6lTDO16sVAo0eAlelrcro
+
+### Unlike a Post
+PUT http://localhost:5000/api/posts/unlike/66519121a09174380d92bf41
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MWM3ODc3MzE5OTIwMjkzMWMyMWIyIn0sImlhdCI6MTcxNjYzNTYzNywiZXhwIjoxNzE2NjM5MjM3fQ.VFjgYNPwWVUN9S3xZR7xVB6lTDO16sVAo0eAlelrcro
+
+### Comment on a Post
+POST http://localhost:5000/api/posts/comment/6651c86673199202931c21d0
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1NjEzZDZiMmRiZjViODI3MzBmNWQ3In0sImlhdCI6MTcxNjkxNzIxOSwiZXhwIjoxNzE2OTIwODE5fQ.yUPuHC089pjkBWVpYs5KFvDRw0-Tx1pMFtXDfRv8XEc
+
+{
+  "text": "ok blog xa bro."
+}
+
+### Delete a Comment
+DELETE http://localhost:5000/api/posts/comment/:postId/:commentId
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MWM3ODc3MzE5OTIwMjkzMWMyMWIyIn0sImlhdCI6MTcxNjYzNTYzNywiZXhwIjoxNzE2NjM5MjM3fQ.VFjgYNPwWVUN9S3xZR7xVB6lTDO16sVAo0eAlelrcro
+
+### Get All Users
+GET http://localhost:5000/api/auth/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MzRkYWQxNGVlZjQ1NzQ4YmI0N2FkIn0sImlhdCI6MTcxNjgyMTY2NywiZXhwIjoxNzE2ODI1MjY3fQ.h_zX1BT2OlNjommr4VNH5zVBrdPb2Mu4o4frDECCg9I
+
+### Retrieve user profile
+GET http://localhost:5000/api/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MzRkYWQxNGVlZjQ1NzQ4YmI0N2FkIn0sImlhdCI6MTcxNjgxNjg5NywiZXhwIjoxNzE2ODIwNDk3fQ.60YDFC4tN1hBRBlnZVGHBP31ypAwQQQqjMwa0LYzMls
+### Update user profile
+PUT http://localhost:5000/api/auth/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MzRkYWQxNGVlZjQ1NzQ4YmI0N2FkIn0sImlhdCI6MTcxNjczNTQyNSwiZXhwIjoxNzE2NzM5MDI1fQ.ZFuvIcfDi9y5d60iMHaGEG4A4uvXOjIrBtwe4rdp2CU
+
+  {
+    "name": "Sajan Test Adhikari",
+    "email": "sajasasssa2@example.com",
+    "password": "password@123"
+  }
+
+### Create a new category
+POST http://localhost:5000/api/categories
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MzRkYWQxNGVlZjQ1NzQ4YmI0N2FkIn0sImlhdCI6MTcxNjczNzI4OSwiZXhwIjoxNzE2NzQwODg5fQ.ILX1LyQJzBbxuINpUt-8GOYJAvBPvURIIBjgEZwgFuI
+
+{
+  "name": "Technology",
+  "description": "Posts related to technology."
+}
+
+### Get all categories
+GET http://localhost:5000/api/categories
+
+### Create a new post with category
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MzRkYWQxNGVlZjQ1NzQ4YmI0N2FkIn0sImlhdCI6MTcxNjczNzI4OSwiZXhwIjoxNzE2NzQwODg5fQ.ILX1LyQJzBbxuINpUt-8GOYJAvBPvURIIBjgEZwgFuI
+
+{
+  "title": "Next big thing in tech",
+  "content": "write something here about the next big thing in tech",
+  "category": "66535570493b434d5c9cc141"
+}
+
+### Get posts by category
+GET http://localhost:5000/api/posts/category/66535570493b434d5c9cc141
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjY1MzRkYWQxNGVlZjQ1NzQ4YmI0N2FkIn0sImlhdCI6MTcxNjczODQ1NywiZXhwIjoxNzE2NzQyMDU3fQ.bhozjvBN4ewDiIk8Mm-IXUNYNu4B1t9DPMFf-bdLvJU

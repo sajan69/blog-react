@@ -10,7 +10,8 @@ const {
   likePost,
   unlikePost,
   commentOnPost,
-  deleteComment
+  deleteComment,
+  getPostsByCategory,
 } = require('../controllers/postController');
 const { postValidation, commentValidation } = require('../validation/post');
 const auth = require('../middleware/Auth');
@@ -59,5 +60,11 @@ router.post('/comment/:id', [auth, commentValidation], commentOnPost);
 // @desc    Delete comment
 // @access  Private
 router.delete('/comment/:id/:comment_id', auth, deleteComment);
+
+
+// @route   GET api/posts/category/:category_id
+// @desc    Get posts by category
+// @access  Public
+router.get('/category/:category_id', getPostsByCategory);
 
 module.exports = router;
