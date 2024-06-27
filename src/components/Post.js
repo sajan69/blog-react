@@ -92,7 +92,7 @@ const Post = () => {
           {post.comments.map(comment => (
             <li key={comment._id} className="comment-item">
               <p className="comment-text">{comment.text}</p>
-              <p className="comment-user">Comment by: {comment.username}</p>
+              <p className="comment-user">Comment by: {comment.userName}</p>
             </li>
           ))}
         </ul>
