@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://blog-project-node.onrender.com'; 
+const API_URL = 'http://localhost:5000/api'; // Ensure this matches your backend's base URL
 
 const api = axios.create({
   baseURL: API_URL,
